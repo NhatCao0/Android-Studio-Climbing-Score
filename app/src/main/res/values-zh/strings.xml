@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">作業1</string>
+    <string name="button1">爬</string>
+    <string name="button2">落下</string>
+    <string name="button3">重置</string>
+    <string name="scoreString">分數: </string>
+    <string name="defaultScore">0</string>
+    <string name="language">中文</string>
+</resources>

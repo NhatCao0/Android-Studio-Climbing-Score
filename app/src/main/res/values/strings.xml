@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Assignment 1</string>
+    <string name="button1">Climb</string>
+    <string name="button2">Fall</string>
+    <string name="button3">Reset</string>
+    <string name="scoreString">Score: </string>
+    <string name="defaultScore">0</string>
+    <string name="language">English</string>
+</resources>
