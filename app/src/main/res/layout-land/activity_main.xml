@@ -10,12 +10,13 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="1030dp"
-        android:layout_height="623dp"
-        android:layout_marginStart="-140dp"
-        android:layout_marginTop="-80dp"
+        android:layout_width="1296dp"
+        android:layout_height="789dp"
+        android:layout_marginStart="-170dp"
+        android:layout_marginTop="-120dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image"
         app:srcCompat="@drawable/vecteezyfallactivity_illustration_16dy0622_generated" />
 
     <Button

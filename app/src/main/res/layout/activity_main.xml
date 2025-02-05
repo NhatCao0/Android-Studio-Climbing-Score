@@ -10,12 +10,13 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="945dp"
-        android:layout_height="1181dp"
-        android:layout_marginStart="-300dp"
-        android:layout_marginTop="-200dp"
+        android:layout_width="1137dp"
+        android:layout_height="1414dp"
+        android:layout_marginStart="-400dp"
+        android:layout_marginTop="-250dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/image"
         app:srcCompat="@drawable/vecteezyfallactivity_illustration_16dy0622_generated" />
 
     <TextView
