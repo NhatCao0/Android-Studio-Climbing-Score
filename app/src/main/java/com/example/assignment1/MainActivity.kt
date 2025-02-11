@@ -8,30 +8,26 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import java.util.Locale
 import android.util.Log
 
 class MainActivity : AppCompatActivity() {
-    private var isEnglish = true
     private lateinit var toggleButton: Button
+    private val climber: Climber = Climber()
+    private var climberScore: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-
-        val climber: Climber = Climber()
         val scoreView: TextView = findViewById(R.id.scoreId)
         val scoreTextView: TextView = findViewById(R.id.scoreId2)
-
         // Climb button
         val climbView: Button = findViewById(R.id.button)
         climbView.setOnClickListener {
             val afterClimbScore = climber.climb()
-            scoreView.text = afterClimbScore.toString()
+            scoreView.text = String.format(afterClimbScore.toString())
             scoreView.setTextColor(climber.scoreColorManagement())
             scoreTextView.setTextColor(climber.scoreColorManagement())
             Log.d("Status", "Climb up 1 step")
@@ -41,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val fallView: Button = findViewById(R.id.button2)
         fallView.setOnClickListener {
             val afterFallScore = climber.fall()
-            scoreView.text = afterFallScore.toString()
+            scoreView.text = String.format(afterFallScore.toString())
             climbView.isEnabled = false  // deactivate climb
             fallView.isEnabled = false   // deactivate fall
             scoreView.setTextColor(climber.scoreColorManagement())
@@ -53,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         val resetView: Button = findViewById(R.id.button3)
         resetView.setOnClickListener {
             val afterResetScore = climber.reset()
-            scoreView.text = afterResetScore.toString()
+            scoreView.text = String.format(afterResetScore.toString())
             climbView.isEnabled = true
             fallView.isEnabled = true
             scoreView.setTextColor(climber.scoreColorManagement())
@@ -91,5 +87,30 @@ class MainActivity : AppCompatActivity() {
     private fun getSavedLanguage(context: Context): String {
         val prefs = context.getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         return prefs.getString("language", "en") ?: "en"
+    }
+
+    // Saving the score when rotation
+    private fun getClimberScore(): Int {
+        return climber.score
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        climberScore = getClimberScore()
+        outState.putInt("score", climberScore)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState.containsKey("score")) {  // debug log
+            Log.d("Status", "score found!")}
+        else {Log.d("Status", "score not found!")}
+        climberScore = savedInstanceState.getInt("score")
+        climber.score = climberScore
+        val scoreView: TextView = findViewById(R.id.scoreId)
+        val scoreTextView: TextView = findViewById(R.id.scoreId2)
+        scoreView.setTextColor(climber.scoreColorManagement())
+        scoreTextView.setTextColor(climber.scoreColorManagement())
+        scoreView.text = String.format(climberScore.toString())
     }
 }

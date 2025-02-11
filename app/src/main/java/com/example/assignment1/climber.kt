@@ -3,7 +3,7 @@ package com.example.assignment1
 import android.graphics.Color
 
 class Climber {
-    private var score: Int = 0
+    var score: Int = 0
     fun climb(): Int {
         when(score){
             in 0..2 -> ++score
